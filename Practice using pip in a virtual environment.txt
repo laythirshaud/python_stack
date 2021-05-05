@@ -1,0 +1,147 @@
+Microsoft Windows [Version 10.0.10586]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Users\laith>cd desktop
+
+C:\Users\laith\Desktop>python_stack
+'python_stack' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laith\Desktop>cd python_stack
+
+C:\Users\laith\Desktop\python_stack>my_environments
+'my_environments' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laith\Desktop\python_stack>cd  my_environments
+
+C:\Users\laith\Desktop\python_stack\my_environments>deactivate
+'deactivate' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laith\Desktop\python_stack\my_environments>cd ..
+
+C:\Users\laith\Desktop\python_stack>deactivate
+'deactivate' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laith\Desktop\python_stack>cd my_environments
+
+C:\Users\laith\Desktop\python_stack\my_environments>call py3Env\Scripts\activate
+
+(py3Env) C:\Users\laith\Desktop\python_stack\my_environments>pip list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+
+(py3Env) C:\Users\laith\Desktop\python_stack\my_environments>deactivate
+C:\Users\laith\Desktop\python_stack\my_environments>pip3 list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+
+C:\Users\laith\Desktop\python_stack\my_environments>pip show django
+WARNING: Package(s) not found: django
+
+C:\Users\laith\Desktop\python_stack\my_environments>pip install django==2.
+Collecting django==2.
+  Downloading Django-2.0-py3-none-any.whl (7.1 MB)
+     |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 7.1 MB 364 kB/s
+Collecting pytz
+  Downloading pytz-2021.1-py2.py3-none-any.whl (510 kB)
+     |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 510 kB 344 kB/s
+Installing collected packages: pytz, django
+Successfully installed django-2.0 pytz-2021.1
+
+C:\Users\laith\Desktop\python_stack\my_environments>pip
+
+Usage:
+  pip <command> [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  check                       Verify installed packages have compatible dependencies.
+  config                      Manage local and global configuration.
+  search                      Search PyPI for packages.
+  cache                       Inspect and manage pip's wheel cache.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion.
+  debug                       Show information useful for debugging.
+  help                        Show help for commands.
+
+General Options:
+  -h, --help                  Show help.
+  --isolated                  Run pip in an isolated mode, ignoring environment variables and user configuration.
+  -v, --verbose               Give more output. Option is additive, and can be used up to 3 times.
+  -V, --version               Show version and exit.
+  -q, --quiet                 Give less output. Option is additive, and can be used up to 3 times (corresponding to
+                              WARNING, ERROR, and CRITICAL logging levels).
+  --log <path>                Path to a verbose appending log.
+  --no-input                  Disable prompting for input.
+  --proxy <proxy>             Specify a proxy in the form [user:passwd@]proxy.server:port.
+  --retries <retries>         Maximum number of retries each connection should attempt (default 5 times).
+  --timeout <sec>             Set the socket timeout (default 15 seconds).
+  --exists-action <action>    Default action when a path already exists: (s)witch, (i)gnore, (w)ipe, (b)ackup,
+                              (a)bort.
+  --trusted-host <hostname>   Mark this host or host:port pair as trusted, even though it does not have valid or any
+                              HTTPS.
+  --cert <path>               Path to PEM-encoded CA certificate bundle. If provided, overrides the default. See 'SSL
+                              Certificate Verification' in pip documentation for more information.
+  --client-cert <path>        Path to SSL client certificate, a single file containing the private key and the
+                              certificate in PEM format.
+  --cache-dir <dir>           Store the cache data in <dir>.
+  --no-cache-dir              Disable the cache.
+  --disable-pip-version-check
+                              Don't periodically check PyPI to determine whether a new version of pip is available for
+                              download. Implied with --no-index.
+  --no-color                  Suppress colored output.
+  --no-python-version-warning
+                              Silence deprecation warnings for upcoming unsupported Pythons.
+  --use-feature <feature>     Enable new functionality, that may be backward incompatible.
+  --use-deprecated <feature>  Enable deprecated functionality, that will be removed in the future.
+
+C:\Users\laith\Desktop\python_stack\my_environments>
+C:\Users\laith\Desktop\python_stack\my_environments>
+C:\Users\laith\Desktop\python_stack\my_environments>
+C:\Users\laith\Desktop\python_stack\my_environments>pip freeze
+Django==2.0
+pytz==2021.1
+
+C:\Users\laith\Desktop\python_stack\my_environments>cd ~/desktop
+The system cannot find the path specified.
+
+C:\Users\laith\Desktop\python_stack\my_environments>cd..
+
+C:\Users\laith\Desktop\python_stack>cd..
+
+C:\Users\laith\Desktop>pip freeze > requirements.text
+
+C:\Users\laith\Desktop>ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laith\Desktop>list
+'list' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\laith\Desktop>pip show django
+Name: Django
+Version: 2.0
+Summary: A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+Home-page: https://www.djangoproject.com/
+Author: Django Software Foundation
+Author-email: foundation@djangoproject.com
+License: BSD
+Location: c:\users\laith\appdata\local\programs\python\python39\lib\site-packages
+Requires: pytz
+Required-by:
+
+C:\Users\laith\Desktop>
