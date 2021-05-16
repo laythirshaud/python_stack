@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function goBack() {
+    window.history.back();
+  }
+
+</script>
+<style> 
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    .lol{
+        width: 400px;
+        border: 1px solid black;
+        height: 300px;
+    }
+    h1{
+        text-decoration: underline;
+    }
+    
+    .pero{
+        display: flex;
+        justify-content: space-around;
+    }
+    
+
+</style>
+<body>
+    <div class="lol">
+        <h1>submitted Info</h1>
+        <div class="pero">   <p>Name </p><p>{{ session['name'] }}</p>  </div>
+        <div  class="pero">   <p>Dojo Location</p> <p>{{ session['location'] }}</p> </div>
+        <div  class="pero">   <p>Favaret languges</p> <p>{{ session['fav'] }}</p> </div>
+        <div  class="pero">   <p>comment</p> <p>{{ session['comment'] }}</p> </div>
+        <button button onclick="goBack()" style="float: right;">go back</button>
+        
+    </div>
+</body>
+</html>
