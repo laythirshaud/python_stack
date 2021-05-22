@@ -1,45 +1,53 @@
 from django.shortcuts import redirect, render, HttpResponse
 import random
-# from time import gmtime, strftime
+from time import gmtime, strftime
 def index(request):
-    if 'value' not in request.session:
-        request.session['value']=0
+    if 'gold' not in request.session:
+        request.session['gold']=0
+    if "act" not in request.session:
+        request.session['act']=[]
+        act = request.session['act']
     else:
-        if request.POST["hidden"]=="farm":
-            request.session['gold']+=random.randint(10,20)
-    if 'value' not in request.session:
-        request.session['value']=0
-    else:
-        if request.POST["hidden"]=="cave":
-            request.session['gold']+=random.randint(5,10)
-    if 'value' not in request.session:
-        request.session['value']=0
-    else:
-        if request.POST["hidden"]=="house":
-            request.session['gold']+=random.randint(5,10)
-    if 'value' not in request.session:
-        request.session['value']=0
-    else:
-        if request.POST["hidden"]=="casino":
-            request.session['gold']+=random.randint(0,50)
-    return render(request, 'index.html')
-# def index2(request):
-#     return render(request,'index2.html')
-# def find(request):
-#     request.session['gold']=random.randint(10,20)
-#     request.session['gold1']=random.randint(5,10)
-#     request.session['time']=strftime("%Y-%m-%d %H:%M %p", gmtime())
-#     request.session['time1']=strftime("%Y-%m-%d %H:%M %p", gmtime())
-#     return redirect('/index2')
+        act = request.session['act']
 
-# def cave(request):
-#     request.session['gold1']=random.randint(5,10)
-#     request.session['time1']=strftime("%Y-%m-%d %H:%M %p", gmtime())
-#     return redirect('/index2')
+    context={
+        'act' :act
+    }
 
-# def find(request):
-#     request.session['gold']=random.randint(2,5)
-#     request.session['time']=strftime("%Y-%m-%d %H:%M %p", gmtime())
-#     return redirect('/index2')
+    return render(request, 'index.html' , context)
 
 
+
+
+def index2(request):
+    time = strftime("%Y-%m-%d %H:%M %p", gmtime())
+
+    if request.POST["hidden"]=="farm":
+        gold=random.randint(10,20)
+        request.session['act'].append( f"Earned {gold} from the farm {time}" )
+    if 'value' not in request.session:
+        request.session['value']=0
+    elif request.POST["hidden"]=="cave":
+        gold=random.randint(5,10)
+        request.session['act'].append( f"Earned {gold} from the cave {time}" )
+    if 'value' not in request.session:
+        request.session['value']=0
+    elif request.POST["hidden"]=="house":
+        gold=random.randint(5,10)
+        request.session['act'].append( f"Earned {gold} from the house {time}" )
+    if 'value' not in request.session:
+        request.session['value']=0
+    elif request.POST["hidden"]=="casino":
+        gold=random.randint(-50,50)
+        if gold < 0 :
+            request.session['act'].append( f"lost {gold} from the casino {time}" )
+        else:
+            request.session['act'].append( f"Earned {gold} from the casino {time}" )
+    request.session['gold']+=gold
+    return redirect('/')
+
+
+
+def updat(request):
+    request.session.clear()
+    return redirect("/")
