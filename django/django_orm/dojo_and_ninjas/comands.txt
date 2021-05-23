@@ -1,0 +1,102 @@
+///////////////////////////////////////////////////////
+//////////////////////////1///////////////////////////
+//////////////////////////////////////////////////////
+(django) C:\Users\academy\Desktop\CodingDojo\CodingDojo\Python_Stack\django\django_fundamentals\django_intro\dojo_and_ninjas>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_and_ninjas_app, sessions
+Running migrations:
+  Applying dojo_and_ninjas_app.0001_initial... OK
+
+(django) C:\Users\academy\Desktop\CodingDojo\CodingDojo\Python_Stack\django\django_fundamentals\django_intro\dojo_and_ninjas>python manage.py shell
+Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_and_ninjas_app.models import *
+///////////////////////////////////////////////////////
+//////////////////////////2///////////////////////////
+//////////////////////////////////////////////////////
+>>> dojo.objects.create(name='ahmad', city='jenin', state='NY')
+<dojo: dojo object (1)>
+>>> dojo.objects.create(name='Mustafa', city='Nablus', state='CN')
+<dojo: dojo object (2)>
+>>> dojo.objects.create(name='Hazem', city='Kherba', state='KH')
+<dojo: dojo object (3)>
+///////////////////////////////////////////////////////
+//////////////////////////3///////////////////////////
+//////////////////////////////////////////////////////
+>>> dojo.objects.create(name='ahmad', city='jenin', state='NY')
+<dojo: dojo object (4)>
+>>> dojo.objects.create(name='Mustafa', city='Nablus', state='CN')
+<dojo: dojo object (5)>
+>>> dojo.objects.create(name='Hazem', city='Kherba', state='KH')
+<dojo: dojo object (6)>
+///////////////////////////////////////////////////////
+//////////////////////////4///////////////////////////
+//////////////////////////////////////////////////////
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=4), first_name='ahmad', last_name='mohammad')
+<ninja: ninja object (1)>
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=4), first_name='Mahmood', last_name='Ali')
+<ninja: ninja object (2)>
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=4), first_name='Laith', last_name='Roshdi')
+<ninja: ninja object (3)>
+///////////////////////////////////////////////////////
+//////////////////////////5///////////////////////////
+//////////////////////////////////////////////////////
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=5), first_name='mustafa', last_name='mohammad')
+<ninja: ninja object (4)>
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=5), first_name='Ali', last_name='Ali')
+<ninja: ninja object (5)>
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=5), first_name='Roshdi', last_name='Roshdi')
+<ninja: ninja object (6)>
+///////////////////////////////////////////////////////
+//////////////////////////6///////////////////////////
+//////////////////////////////////////////////////////
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=6), first_name='Hashish', last_name='money')
+<ninja: ninja object (7)>
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=6), first_name='Saad', last_name='Saed')
+<ninja: ninja object (8)>
+>>> ninja.objects.create(dojo_id=dojo.objects.get(id=6), first_name='Ramadan', last_name='Kareem')
+<ninja: ninja object (9)>
+///////////////////////////////////////////////////////
+//////////////////////////7///////////////////////////
+//////////////////////////////////////////////////////
+>>> ninjas = ninja.objects.filter(dojo_id=dojo.objects.get(id=4))
+///////////////////////////////////////////////////////
+//////////////////////////8///////////////////////////
+//////////////////////////////////////////////////////
+>>> ninjas = ninja.objects.filter(dojo_id=dojo.objects.get(id=6))
+///////////////////////////////////////////////////////
+//////////////////////////9///////////////////////////
+//////////////////////////////////////////////////////
+>>> last = ninja.objects.last()
+>>> last.dojo_id
+<dojo: dojo object (6)>
+///////////////////////////////////////////////////////
+//////////////////////////10///////////////////////////
+//////////////////////////////////////////////////////
+(django) C:\Users\academy\Desktop\CodingDojo\CodingDojo\Python_Stack\django\django_fundamentals\django_intro\dojo_and_ninjas>python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> 'old dojo'
+Migrations for 'dojo_and_ninjas_app':
+  dojo_and_ninjas_app\migrations\0002_dojo_desc.py
+    - Add field desc to dojo
+
+(django) C:\Users\academy\Desktop\CodingDojo\CodingDojo\Python_Stack\django\django_fundamentals\django_intro\dojo_and_ninjas>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_and_ninjas_app, sessions
+Running migrations:
+  Applying dojo_and_ninjas_app.0002_dojo_desc... OK
+///////////////////////////////////////////////////////
+//////////////////////////11///////////////////////////
+//////////////////////////////////////////////////////
+>>> from dojo_and_ninjas_app.models import *
+>>> dojo.objects.create(name='axsos', city='AbuShkadim', state='RA')
+<dojo: dojo object (7)>
+>>>
