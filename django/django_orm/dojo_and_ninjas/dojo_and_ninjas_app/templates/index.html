@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .head{
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 2px solid black;
+    }
+    h1{
+        text-align: center;
+    }
+    .form1{
+        text-align-last: justify;
+    }
+    .form2{
+        text-align-last: justify;
+    }
+    .lol{
+        margin-left: 500px;
+    }
+    
+</style>
+<body>
+    
+    <div class="head">
+        <div class="form1">
+            <h1>Add a Dojo</h1>
+            <form action="show" method="POST">
+                {% csrf_token %}
+                <label for="text">Name</label>
+                <input type="text" name="name"><br>
+                <label for="text">city</label>
+                <input type="text" name="city"><br>
+                <label for="text">state</label>
+                <input type="text" name="state"><br><br><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        <div class="form2">
+            <h1>Add a Ninja</h1>
+            <form action="show2" method="POST">
+                {% csrf_token %}
+                <label for="text">First Name</label>
+                <input type="text" name="first_name"><br>
+                <label for="text">last Name</label>
+                <input type="text" name="last_name"><br>
+                <label for="text">Dojo</label>
+                <select name="dojo_id">
+                    {%for doj in dojos%}
+                    <option value="{{doj.id}}">{{doj.name}}</option>
+                    {% endfor %}
+                </select><br><br><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div class="lol"><h2>All the Dojo</h2>
+    <ul>
+        {%for doj in dojos%}
+          <li>{{doj.name}}
+            <ul>
+                {%for nin in doj.ninjas.all %}	
+                <li><em>{{nin.first_name}}  {{nin.last_name}}</em></li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+</body>
+</html>
