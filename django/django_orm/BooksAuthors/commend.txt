@@ -1,0 +1,146 @@
+///////////////////////////////////////////////////////
+//////////////////////////1///////////////////////////
+//////////////////////////////////////////////////////
+from books_authors_app.models import *
+>>> Book.objects.create(title='english', desc='this book its cale english language')
+<Book: Book object (1)>
+>>> Book.objects.create(title='arabic', desc='this book its cale arabic language')
+<Book: Book object (2)>
+>>> Book.objects.create(title='Python', desc='Python language')
+<Book: Book object (3)>
+>>> Book.objects.create(title='PHP', desc='PHP language')
+<Book: Book object (4)>
+>>> Book.objects.create(title='Ruby', desc='Ruby language')
+<Book: Book object (5)>
+///////////////////////////////////////////////////////
+//////////////////////////2///////////////////////////
+//////////////////////////////////////////////////////
+ outhor.objects.create(first_name='Jane', last_name='Austen')
+<outhor: outhor object (1)>
+>>> outhor.objects.create(first_name='Emily', last_name='Dickinson')
+<outhor: outhor object (2)>
+>>> outhor.objects.create(first_name='Fyodor', last_name='Dostoevsky')
+<outhor: outhor object (3)>
+>>> outhor.objects.create(first_name='William', last_name='Shakespeare')
+<outhor: outhor object (4)>
+>>> outhor.objects.create(first_name='Lau', last_name='Tzu')
+<outhor: outhor object (5)>
+///////////////////////////////////////////////////////
+//////////////////////////3///////////////////////////
+//////////////////////////////////////////////////////
+exit()
+
+(djangoPy3Env) C:\Users\laith\Desktop\python_stack\django\django_orm\BooksAuthors>python manage.py makemigrations
+Migrations for 'books_authors_app':
+  books_authors_app\migrations\0002_outhor_notes.py
+    - Add field notes to outhor
+
+(djangoPy3Env) C:\Users\laith\Desktop\python_stack\django\django_orm\BooksAuthors>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Applying books_authors_app.0002_outhor_notes... OK
+
+(djangoPy3Env) C:\Users\laith\Desktop\python_stack\django\django_orm\BooksAuthors>
+
+
+
+
+
+///////////////////////////////////////////////////////
+//////////////////////////4///////////////////////////
+//////////////////////////////////////////////////////
+>>> c = Book.objects.get(id=1)
+>>> c.title = "C#"
+>>> c.save()
+///////////////////////////////////////////////////////
+//////////////////////////5///////////////////////////
+//////////////////////////////////////////////////////
+>>> c = outhor.objects.get(id=4)
+>>> c.first_name ='Bill'
+>>> c.save()
+///////////////////////////////////////////////////////
+//////////////////////////6///////////////////////////
+//////////////////////////////////////////////////////
+
+Assign the first author to the first 2 books
+
+x = Book.objects.get(id=1)
+y = Book.objects.get(id=2)
+c = outhor.objects.get(id=1)
+c.books.add(y)
+c.books.add(x)
+c.save()
+
+
+ Query: Assign the second author to the first 3 books
+
+x = Book.objects.get(id=1)
+y = Book.objects.get(id=2)
+z = Book.objects.get(id=3)
+c = outhor.objects.get(id=2)
+c.books.add(y)
+c.books.add(x)
+c.books.add(z)
+c.save()
+
+ Query: Assign the third author to the first 4 books
+x = Book.objects.get(id=1)
+y = Book.objects.get(id=2)
+z = Book.objects.get(id=3)
+c = outhor.objects.get(id=3)
+w = Book.objects.get(id=4)
+c.books.add(w)
+c.books.add(y)
+c.books.add(x)
+c.books.add(z)
+c.save()
+ Query: Assign the fourth author to the first 5 books (or in other words, all the books)
+x = Book.objects.get(id=1)
+y = Book.objects.get(id=2)
+z = Book.objects.get(id=3)
+c = outhor.objects.get(id=4)
+w = Book.objects.get(id=4)
+t = Book.objects.get(id=5)
+c.books.add(w)
+c.books.add(t)
+c.books.add(y)
+c.books.add(x)
+c.books.add(z)
+c.save()
+
+
+Query: Retrieve all the authors for the 3rd book
+
+
+
+
+z = Book.objects.get(id=3)
+z.outhor.all()
+
+ Query: Remove the first author of the 3rd book
+z = Book.objects.get(id=3)
+zz=z.outhors.first()
+zz.delete
+
+
+
+
+
+ Query: Add the 5th author as one of the authors of the 2nd book
+
+
+x = Book.objects.get(id=2)
+>>> c = outhor.objects.get(id=5)
+>>> x.outhors.add(c)
+>>> x.save()
+
+ Query: Find all the books that the 3rd author is part of
+
+c = outhor.objects.get(id=3)
+c.books.all()
+
+ Query: Find all the authors that contributed to the 5th book
+
+>>> z = Book.objects.get(id=5)
+>>> z.outhors.all()
