@@ -6,10 +6,22 @@ class Book(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class outhor(models.Model):
-    first_name = models.CharField(max_length=45)
-    last_name = models.CharField(max_length=45)
-    notes =models.TextField(null=True)
-    books = models.ManyToManyField(Book, related_name="outhors")
+class Author(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    notes =models.TextField()
+    books = models.ManyToManyField(Book, related_name="authors")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+def addOneBook(title, desc):
+    new_book= Book.objects.create(title=title, desc=desc)
+    return new_book
+
+def allBooks():
+    return Book.objects.all()
+
+def getBook(id):
+    return Book.objects.get(id=id)
+def allAuthors():
+    return Author.objects.all()
