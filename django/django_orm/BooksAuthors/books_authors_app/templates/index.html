@@ -18,37 +18,36 @@
     }
 </style>
 
-
-
 <body>
     <div class="header">
         <div class="one">
         <h1>Add A Book</h1>
-        <form action="/show" method="POST"> 
+        <form action="/show" method="POST">
+            {% csrf_token %} 
             Title<input type="text" name="title"><br>
             Descreption <input type="text" name="desc"><br><br>
             <input type="submit">
         </form>
         </div>
         <div>
-            <table class="table">
+            <table>
                 <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Handle</th>
-                  </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                    <tbody>
+                        {% for i in book%}
+                            <tr>
+                                <th>{{ i.id }}</th>
+                                <th>{{ i.title }}</th>
+                                <th><a href="view/{{ i.id }}">View</a></th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>{{ 1 }}</td>
-                    <td>{{ 1 }}</td>
-                    <td>{{ 1 }}</td>
-                  </tr>
-                </tbody>
-              </table>
+            </table>
         </div>
 
     </div>

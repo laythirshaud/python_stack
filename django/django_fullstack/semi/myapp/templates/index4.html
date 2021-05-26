@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+        }
+        .goback p{
+            width: 100px;
+            margin-right: 0;
+        }
+        .NR{
+            display: flex;
+        }
+        main{
+            width: 300px;
+        }
+        #title{
+            width: 300px;
+        }
+        #desc{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="goback"><p><a href="/shows">Go back</a></p></div>
+    <h1>Edit show {{all_shows.id}}</h1><br>
+    <main>
+        <form action="/shows/editthis" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="hidden" value="{{all_shows.id}}">
+            <label for="title">Tiltle</label><br>
+            <input type="text" name="title" id="title"><br>
+            <div class="NR">
+                <div class="formNR">
+                    <label for="network">Network</label><br>
+                    <input type="text" name="network">
+                </div>
+                <div class="formNR">
+                    <label for="relasedate">Relasedate</label><br>
+                    <input type="date" name="relasedate">
+                </div>
+            </div>
+            <label for="desc">Description</label><br>
+            <textarea name="desc" id="desc" rows="10"></textarea><br>
+            <input type="submit" value="update">
+        </form>
+    </main>
+</body>
+</html>

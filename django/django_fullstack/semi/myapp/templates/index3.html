@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+        }
+        .goback p{
+            width: 100px;
+            margin-right: 0;
+        }
+        .NR{
+            display: flex;
+        }
+        main{
+            width: 300px;
+        }
+        #title{
+            width: 300px;
+        }
+        #desc{
+            width: 300px;
+        }   
+    </style>
+</head>
+<body>
+    <div class="goback"><p><a href="/shows">Go back</a></p></div>
+    <h1>TV Show {{all_shows.id}}</h1><br>
+    <main>
+        <p>Title: {{all_shows.title}}</p><br>
+        <p>Network: {{all_shows.network}}</p><br>
+        <p>RelaseDate: {{all_shows.relasedate}}</p><br>
+        <p>Description: {{all_shows.desc}}</p><br>
+        <br><br><br>
+        <p>Last Updated: {{all_shows.updated_at}}</p><br>
+        <p><a href="/shows/{{all_shows.id}}/edit">Edit</a> | <a href="/delete/{{all_shows.id}}">Delete</a></p>
+    </main>
+</body>
+</html>
