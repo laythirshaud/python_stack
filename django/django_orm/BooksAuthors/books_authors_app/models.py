@@ -25,3 +25,6 @@ def getBook(id):
     return Book.objects.get(id=id)
 def allAuthors():
     return Author.objects.all()
+
+def allAuthor():
+    return Author.objects.all()
