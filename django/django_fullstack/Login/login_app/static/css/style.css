@@ -1,6 +1,8 @@
 
 .le{
-    float: left;
+    display: flex;
+    justify-content: space-evenly;
+    
 }
 
 .ri{

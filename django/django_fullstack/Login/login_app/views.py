@@ -41,6 +41,7 @@ def registration(request):
         conf=request.POST['confirm']
         if pas==conf: #to  make sure its same
             hash = bcrypt.hashpw(pas.encode(), bcrypt.gensalt()).decode()
+            
             user=User.objects.create(first_name=first,last_name=last,email=em,password=hash)
 
     if 'name' not in request.session:
@@ -58,16 +59,32 @@ def logout(request):
     return redirect("/")
 
 def login(request):
-    # EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-    # errors = {}
-    # if not EMAIL_REGEX.match(request.POST['lemail']):         
-    #         errors['lemail'] = "Invalid email address!"
-    oneUser=User.objects.filter(email=request.POST['lemail'])
-    if oneUser: #if len(user)>0
-        if bcrypt.checkpw(request.POST['lpassword'].encode(), oneUser[0].password.encode()):
+
+    EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+    errors1 = {}
+    if not EMAIL_REGEX.match(request.POST['lemail']):         
+        errors1['lemail'] = "Invalid email address!"
+    try:
+        oneUser=User.objects.filter(email=request.POST['lemail'])
+        errors1['lemaittl'] = "this email does not exist in our data bases!"
+    except:
+        pass
+
+    if oneUser:
+        if bcrypt.checkpw(request.POST["lpassword"].encode(), oneUser[0].password.encode()):
             if 'name' not in request.session:
-                request.session['name']=oneUser[0].first_name
+                    request.session['name']=oneUser[0].first_name
             return redirect("/success")
-        return redirect("/")
+        else:
+            errors1["conf"]="Password Does Not match"
+
+    if len(errors1) > 0:
+        for key, value in errors1.items():
+            messages.error(request,value)
+        return redirect('/')
     return redirect('/')
+
+
+
+
 

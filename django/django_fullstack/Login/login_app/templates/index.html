@@ -9,10 +9,14 @@
     <link rel="stylesheet" href="{%  static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Registration</h1>
+
+    
+
+    
     <div class="le">
         <form action="/registration" method="POST">
             {% csrf_token %}
+            <h1>Registration</h1>
             <label for="first_name">First Name:</label>
             <br>
             <input type="text" name="fname" id="first_name" required>
@@ -34,30 +38,18 @@
             <input type="password" name="confirm" id="confirm" required>
             <br><br>
             <input type="submit" value="Register">
-
-        
-
         </form>
-    </div>
-    <div>
-        {% if messages %}
-            <ul class="messages">    
-                {% for message in messages %}    
-                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
     
+    
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
     <div class="ri">
         <h1>Log In</h1>
-        {% if messages %}
-<ul class="messages">    
-    {% for message in messages %}    
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-    {% endfor %}
-</ul>
-{% endif %}
         <form action="/login" method="POST">
             {% csrf_token %}
             <label for="email">Email</label>
@@ -69,5 +61,6 @@
             <input type="submit" value="login">
         </form>
     </div>
+</div>
 </body>
 </html>
