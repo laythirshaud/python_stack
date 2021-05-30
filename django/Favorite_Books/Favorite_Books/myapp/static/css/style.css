@@ -1,0 +1,11 @@
+
+.le{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.ri{
+    float: right;
+    vertical-align: top;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    .clear_fix{
+        clear: both;
+    }
+    .hed{
+            display: flex;
+            justify-content: space-between;
+        }
+    .this{
+            display: flex;
+            justify-content: space-evenly
+    }
+</style>
+
+
+    <div class="hed">
+        <h1>Welcome {{request.session.name}}</h1>
+        <a href="/logout">logout</a>
+    </div>
+    <div class="clear_fix"></div>
+        <hr>
+    
+        <div class="this">
+            <div>
+            <h2>The Silmarillion</h2>
+            <form action="books" method="POST">
+                {% csrf_token %}
+                <label for="">added by:{{book.uploaded_by.first_name}}{{book.uploaded_by.last_name}}</label><br>
+                <label for="">Added on :{{book.created_at}}</label><br>
+                <label for="">last updated on :{{book.updated_at}}</label><br>
+                <label for="">description:{{book.desc}}</label><br>
+            </form>
+            </div>
+            
+            <div>
+                <h2>User how like this book</h2>
+                <ul>
+    
+                </ul>
+            </div>
+        </div>
+
+    
+</body>
+</html>

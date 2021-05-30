@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+        .hed{
+            display: flex;
+            justify-content: space-between;
+        }
+        .this{
+            display: flex;
+            justify-content: space-evenly
+        }
+        .clear_fix{
+            clear: both;
+        }
+</style>
+<body><div class="hed">
+        <h1>Welcome {{request.session.name}}</h1>
+        <a href="/logout">logout</a>
+    </div>
+    <div class="clear_fix"></div>
+    <hr>
+    <div class="this">
+        <div>
+        <h2>ADD a Favorite Book</h2>
+        <form action="/books" method="POST">
+            {% csrf_token %}
+            <label for="">Title :</label><br>
+            <input type="text" name="title"><br>
+            <label for="">description :</label><br>
+            <input type="text" name="desc"><br><br>
+            <input type="submit" value="Add Book">
+        </form>
+        </div>
+        
+        <div>
+            <h2>All Books</h2>
+            <ul>
+                {%for book in books%}
+                <a href="/show/{{book.id}}">{{book.title}}</a>
+                
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
