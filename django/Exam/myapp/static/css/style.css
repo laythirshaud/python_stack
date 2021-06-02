@@ -1,0 +1,20 @@
+
+.le{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.ri{
+    width: 300px;
+    float: right;
+    vertical-align: top;
+    border: 2px solid black;
+    text-align: center;
+    height: 200px;
+}
+.reg{
+    border: 2px solid black;
+    width: 500px;
+    text-align-last: center;
+}

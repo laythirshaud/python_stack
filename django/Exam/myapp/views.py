@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, HttpResponse
 import re
 from django.contrib import messages
 import bcrypt
-from . models import User
+from . models import Thought, User
 
 
 def root(request):
@@ -41,21 +41,11 @@ def registration(request):
         conf=request.POST['confirm']
         if pas==conf: #to  make sure its same
             hash = bcrypt.hashpw(pas.encode(), bcrypt.gensalt()).decode()
-            
             user=User.objects.create(first_name=first,last_name=last,email=em,password=hash)
 
     if 'name' not in request.session:
         request.session['name']=first
         return redirect("/success")
-    return redirect("/")
-
-def success(request):
-    if 'name' in request.session:
-        return render(request,'success.html')
-    return redirect('/')
-
-def logout(request):
-    del request.session['name']
     return redirect("/")
 
 def login(request):
@@ -86,7 +76,48 @@ def login(request):
 
 
 
+def success(request):
+    if 'name' in request.session:
+        someone=User.objects.get(first_name=request.session['name'])
+        context={
+            'user': someone,
+            'all_thoughts' : Thought.objects.all()
+        }
+        return render(request,'thoughts.html',context)
+    return redirect('/')
+
+def logout(request):
+    del request.session['name']
+    return redirect("/")
 
 
+def add_thought(request):
+    posting=request.POST['addpost']
+    someone=User.objects.get(first_name=request.session['name'])
+    Thought.objects.create(description=posting,uploade_by=someone)
+    return redirect("/")
 
+def thought(request, id):
+    this=Thought.objects.filter(id=id)
+    this=this[0]
+    people_like = User.objects.filter(like=this.id)
+    context={
+        'this_thought' : this,
+        'who_like' : people_like
+    }
+    return render(request,"show.html",context)
 
+def unlikethought(request, id):
+    user_in_session=User.objects.get(first_name=request.session['name'])
+    this_thought=Thought.objects.filter(id=id)
+    liked_thought=this_thought[0]
+    user_in_session.like.remove(liked_thought)
+    
+    return redirect(f"/thought/{id}")
+
+def likethought(request, id):
+    user_in_session=User.objects.get(first_name=request.session['name'])
+    this_thought=Thought.objects.filter(id=id)
+    liked_thought=this_thought[0]
+    user_in_session.like.add(liked_thought)
+    return redirect(f"/thought/{id}")

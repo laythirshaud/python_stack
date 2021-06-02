@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Thoughts Page</title>
+</head>
+<style>
+    #tre{
+        float: right;
+    }
+    th{
+        border: 1px solid black;
+    }
+    td{
+        border: 1px solid black;
+    }
+    .this{
+        display: flex;
+        justify-content: left;
+    }
+    .para{
+        border: 2px solid black;
+        width: 500px;
+        height: 70px;
+    }
+    .like{
+        background-color: green;
+        color: white;
+        margin-left: 450px;
+        padding: 5px;
+        box-shadow: 3px 3px 3px black;
+    }
+    
+    
+    .unlike{
+        background-color: orange;
+        color: black;
+        margin-left: 20px;
+        padding: 5px;
+        box-shadow: 3px 3px 3px black;
+    }
+</style>
+<body>
+
+    <a href="/logout" id="tre">| logout </a>
+    <a href="/" id="tre"> Dashboard   |</a>
+    <br><br>
+    <div class="this">
+        <p >{{this_thought.uploade_by.first_name}} Says:</p>
+        <p class="para">{{this_thought.description}}</p> 
+    </div>
+<br>
+        <a class="like" href="/like/{{this_thought.id}}"> like</a>
+        <a class="unlike" href="/unlike/{{this_thought.id}}" >unlike</a>
+        
+
+    <h2>people who like the thought :</h2>
+    <div class="table">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            {% for user in who_like %}
+            <tr>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

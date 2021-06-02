@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thought</title>
+</head>
+<style>
+    .clear_fix{
+        clear: both;
+    }
+    .hed{
+        width: 1200px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+    .post{
+        width: 500px;
+        border: 1px solid black;
+        margin-bottom: 20px;
+    }
+    .para{
+        width: 500px;
+        height: 100px;
+        border: 2px solid black;
+        margin-left: 20px;
+    }
+    .box{
+        display: flex;
+        justify-content: left;
+    }
+    .deta{
+        margin-left: 100px;
+    }
+
+</style>
+<body>
+    <div class="hed">
+        <h1>Hi {{user.first_name}} {{user.last_name}} !</h1>
+        <a href="/logout">logout</a>
+    </div>
+
+    <form action="/add_thought" method="POST">
+        {% csrf_token %}
+		<input type="text" name="addpost" placeholder="Post a Great Thought Here!" pattern="(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain uppercase and small case and at least  five characters" class="post" required >
+        <input type="submit" value="Add Thoughts">
+    </form>
+    <div class="clear_fix"></div>
+    <hr>
+    <h2>All Thoughts</h2>
+    {% for Thought in all_thoughts %}
+    <div class="box">
+        <p>{{Thought.uploade_by.first_name}} Says:</p>
+        <p class="para">{{Thought.description}}</p>
+    </div>
+        {% if Thought in faverit %}
+            <p>faved</p>
+        {% endif %}
+        <a class="deta" href="/thought/{{Thought.id}}"> Details</a>
+    {% endfor %}
+
+
+</body>
+</html>
